@@ -1,0 +1,32 @@
+Process Enumeration:
+
+Get-Process
+Get-Process [process name] (e.g., Get-Process lsass)
+Get-Process | Select-Object -Property Name, Id
+Get-Process | Where-Object -Property Path -Like "temp"
+
+Network Enumeration:
+
+Get-NetTCPConnection
+Get-NetTCPConnection | Select-Object -Property LocalAddress, LocalPort, State, OwningProcess
+
+Registry Startup Keys:
+
+Get-ChildItem [registry key path] (e.g., Get-ChildItem HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run)
+Get-ItemProperty [registry key path]
+Remove-ItemProperty [registry key path] -Name [value name]
+
+Differential Analysis:
+
+Get-Service (baseline and current state capture)
+Compare-Object (baseline and current state comparison)
+
+User Account Analysis:
+
+Get-LocalUser | Select-Object -ExpandProperty Name | Out-File localusers.txt
+Compare-Object $usersnow $usersbaseline
+
+Scheduled Task Analysis:
+
+Get-ScheduledTask
+Compare-Object (baseline and current state comparison)
